@@ -13,7 +13,8 @@ The dataset xi and fi, a precomputed S = (S1, ..., Sn), the derivatives at the p
 
 For the kubic splines, we only need to determine the second derivative at x1 and xn to conclude all Si by solving a linear equation system.
 Since we deal with natural splines, we use the fact that s1''(x1) = 0 and s2''(xn) = 0 to be able to solve the system.
-We precompute S with the funtion solve_S(xi,fi,0,0), if different conditions are necessary for s1''(x1) and s2''(xn), simply set them as second and third argument here.
+We precompute S with the funtion ```solve_S(xi,fi,0,0)```
+If different conditions are necessary for s1''(x1) and s2''(xn), simply set them as second and third argument here.
 
 After precomputing 
 
