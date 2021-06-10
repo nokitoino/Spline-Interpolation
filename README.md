@@ -1,6 +1,7 @@
 # Spline-Interpolation
 This python script interpolates the Runge-Function with natural kubic Splines.
-![alt text](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot.png)
+![alt text](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot.png "n=9 datasets")
+
 We want to interpolate a function with a given dataset (xi,fi), i = 1,...,n
 First, the python script first builds a polynom of the form si(x) = c1,i+c2,i(x-xi)+c3,i(x-xi)^2+c4,i(x-xi)^3 for each intervall [xi,xi+1], i = 1,...,n-1
 Secondly, the spline function is built, which contains si of every intervall.
