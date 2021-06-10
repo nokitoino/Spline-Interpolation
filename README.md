@@ -1,6 +1,7 @@
 # Spline-Interpolation
 This python script interpolates the Runge-Function with natural kubic Splines.
-![alt text](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot.png "n=9 datasets")
+![Spline auf Runge mit n=9](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot.png "n=9 datasets")
+![Spline auf Kurve mit n=23](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot2.png "n=23 datasets")
 
 We want to interpolate a function with a given dataset (xi,fi), i = 1,...,n
 
