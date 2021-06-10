@@ -14,9 +14,11 @@ Since we deal with natural splines, we use the fact that s1''(x1) = 0 and s2''(x
 We precompute S with the funtion solve_S(xi,fi,0,0), if different conditions are necessary for s1''(x1) and s2''(xn), simply set them as second and third argument here.
 
 After precomputing 
-S = solve_S(xi,fi,0,0),
+
+```S = solve_S(xi,fi,0,0)```,
 we can now evaluate the spline function simply with
-spline(xi,fi,S,x),
+
+```spline(xi,fi,S,x)```,
 where x ∈ [x1,xn] is the value we want to evaluate.
 
 
