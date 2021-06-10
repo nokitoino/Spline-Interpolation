@@ -11,7 +11,7 @@ Secondly, the spline function is built, which contains si of every intervall.
 The spline function accepts 4 arguments.
 The dataset xi and fi, a precomputed S = (S1, ..., Sn), the derivatives at the points xi, which is relevant to calculate the coefficients and of course the x value for which we want to evaluate the y value.
 
-For the kubic splines, we only need to determine the second derivative at x1 and xn to conclude all Si by solving a linear system.
+For the kubic splines, we only need to determine the second derivative at x1 and xn to conclude all Si by solving a linear equation system.
 Since we deal with natural splines, we use the fact that s1''(x1) = 0 and s2''(xn) = 0 to be able to solve the system.
 We precompute S with the funtion solve_S(xi,fi,0,0), if different conditions are necessary for s1''(x1) and s2''(xn), simply set them as second and third argument here.
 
