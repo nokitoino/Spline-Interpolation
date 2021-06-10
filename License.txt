@@ -1,0 +1,3 @@
+This script was written by Akin Y. and orientated on the topic Splines described in the book Numerik by Andreas Meister and Thomas Sonar.
+Feel free to take a look at this book to understand the maths and the exact analogy to my script.
+Please consider to credit my github account when using this script in any context.
