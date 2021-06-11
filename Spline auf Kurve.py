@@ -21,7 +21,6 @@ def pLagr(xi,fi,x):#wertet zu Datensatz (xi,fi) das Interpolationspolynom p(x) a
     for j in range(len(xi)):
         sum += fi[j] * L(j, xi, x)
     return sum
-
 def getVector_l(xi):
     l_vector = [0]*(len(xi)-2)
     for i in range(len(xi)-2):
@@ -43,7 +42,7 @@ def getVector_R(xi,fi,K1,K2):#s1''(a) = K1 und s2''(b) = K2, die Randbedingungen
     R_vector[0] = 3*((fi[1]-fi[0])/(xi[1]-xi[0]))-K1*(xi[1]-xi[0]) #erste Element von K1 abhängig
     R_vector[n-1] = 3*((fi[n-1]-fi[n-2])/(xi[n-1]-xi[n-2]))-K2*(xi[n-1]-xi[n-2]) #letzte Element von K2 abhängig
     for i in range(1,n-1):
-        R_vector[i] = 3*((fi[n-1]-fi[n-2])*(xi[n-2]-xi[n-3])/(xi[n-1]-xi[n-2])+(fi[n-2]-fi[n-3])*(xi[n-1]-xi[n-2])/(xi[n-2]-xi[n-3]))
+        R_vector[i] = 3*((fi[i+1]-fi[i])*(xi[i]-xi[i-1])/(xi[i+1]-xi[i])+(fi[i]-fi[i-1])*(xi[i+1]-xi[i])/(xi[i]-xi[i-1]))
     return R_vector
 
 
@@ -58,7 +57,6 @@ def solve_S(xi,fi,K1,K2):
     l = getVector_l(xi)
     d = getVector_d(xi)
     r = getVector_r(xi)
-
     for i in range(1,n-1):#Zeilen
         M[i][i-1] = l[i-1]
         M[i][i-1+1] = d[i-1]
@@ -109,7 +107,7 @@ def spline(xi,fi,S,x):
 a = 1
 K = 2
 t = np.linspace(0,2*math.pi, 100)
-n = 23
+n = 9
 #Spline auf X(t)
 xix = np.linspace(0,2*math.pi, n) # n>=7 Stützstellen
 fix = [] #Stützstellenwerte berechnet
@@ -117,9 +115,9 @@ for i in xix:
     fix.append(a*math.cos(K*i)*math.cos(i))
 
 S = solve_S(xix,fix,0,0)
-splinex_y = [0]*len(xix)
-for j in range(len(xix)):
-    splinex_y[j] = spline(xix,fix,S,xix[j])
+splinex_y = [0]*len(t)
+for j in range(len(t)):
+    splinex_y[j] = spline(xix,fix,S,t[j])
 
 #Spline auf Y(t)
 xiy = np.linspace(0,2*math.pi, n) # n>=7 Stützstellen
@@ -128,9 +126,9 @@ for i in xiy:
     fiy.append(a*math.cos(K*i)*math.sin(i))
 
 S2 = solve_S(xiy,fiy,0,0)
-spliney_y = [0]*len(xiy)
-for j in range(len(xiy)):
-    spliney_y[j] = spline(xiy,fiy,S2,xiy[j])
+spliney_y = [0]*len(t)
+for j in range(len(t)):
+    spliney_y[j] = spline(xiy,fiy,S2,t[j])
 
 
 
