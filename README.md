@@ -1,5 +1,5 @@
 # Spline-Interpolation
-This python scripts interpolate the Runge-Function and a curve function with linear Splines.
+This python scripts interpolate the Runge-Function and a curve function with natural kubic Splines.
 ![Spline auf Runge mit n=7](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot.png "n=7 datasets")
 n=7
 ![Spline auf Kurve mit n=15](https://github.com/nokitoino/Spline-Interpolation/blob/main/myplot1.png "n=15 datasets")
