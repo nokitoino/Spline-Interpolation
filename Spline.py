@@ -43,7 +43,7 @@ def getVector_R(xi,fi,K1,K2):#s1''(a) = K1 und s2''(b) = K2, die Randbedingungen
     R_vector[0] = 3*((fi[1]-fi[0])/(xi[1]-xi[0]))-K1*(xi[1]-xi[0]) #erste Element von K1 abhängig
     R_vector[n-1] = 3*((fi[n-1]-fi[n-2])/(xi[n-1]-xi[n-2]))-K2*(xi[n-1]-xi[n-2]) #letzte Element von K2 abhängig
     for i in range(1,n-1):
-        R_vector[i] = 3*((fi[n-1]-fi[n-2])*(xi[n-2]-xi[n-3])/(xi[n-1]-xi[n-2])+(fi[n-2]-fi[n-3])*(xi[n-1]-xi[n-2])/(xi[n-2]-xi[n-3]))
+        R_vector[i] = 3*((fi[i+1]-fi[i])*(xi[i]-xi[i-1])/(xi[i+1]-xi[i])+(fi[i]-fi[i-1])*(xi[i+1]-xi[i])/(xi[i]-xi[i-1]))
     return R_vector
 
 
@@ -58,7 +58,6 @@ def solve_S(xi,fi,K1,K2):
     l = getVector_l(xi)
     d = getVector_d(xi)
     r = getVector_r(xi)
-
     for i in range(1,n-1):#Zeilen
         M[i][i-1] = l[i-1]
         M[i][i-1+1] = d[i-1]
@@ -103,20 +102,23 @@ def spline(xi,fi,S,x):
 
 
 #Spline-Funktion
-n = 50
+n = 15 #Anzahl der Stützstellen größer 1
 xi = aquid_x(-5,5,n) #Erstellen von N äquidistanten Stützstellen
 fi = [] #Stützstellenwerte berechnet
+x = np.linspace(-5,5, 100) #all x values to be evaluated
 for i in xi:
     fi.append(runge_func(i))
 S = solve_S(xi,fi,0,0)
-spline_y = [0]*len(xi)
-for j in range(len(xi)):
-    spline_y[j] = spline(xi,fi,S,xi[j])
-plt.plot(xi,spline_y, label="Spline Interpolation", linewidth=3)
+spline_y = [0]*len(x)
+
+for j in range(len(x)):
+    spline_y[j] = spline(xi,fi,S,x[j])
+plt.plot(x,spline_y, label="Spline Interpolation", linewidth=2)
+
+
 
 #Runge-Funktion
-x = np.linspace(-5,5, 100) #Runge Funktion
-plt.plot(x,runge_func(x), label="Runge Funktion", linewidth=1)
+plt.plot(x,runge_func(x), label="Runge Funktion", linewidth=2)
 
 
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left',
