@@ -73,11 +73,6 @@ def s_i(xi,fi,Si,Si_plus_1,untere_Grenze_i,obere_Grenze_i,x): #Pf,3 beschränkt 
     c4_i = (2 * fi[untere_Grenze_i] - 2 * fi[obere_Grenze_i] + Si*(xi[obere_Grenze_i]-xi[untere_Grenze_i])+Si_plus_1*(xi[obere_Grenze_i]-xi[untere_Grenze_i])) / pow(xi[obere_Grenze_i] - xi[untere_Grenze_i], 3)
     y = c1_i + c2_i*(x-xi[untere_Grenze_i])+c3_i*pow(x-xi[untere_Grenze_i],2)+c4_i*pow(x-xi[untere_Grenze_i],3)
     return y
-def aquid_x(a,b,n):# Intervall [a,b] mit n Stützstellen
-    xi = [0]*n
-    for i in range(n):
-        xi[i] = -5 + (10*((i+1)-1))/(n-1)
-    return xi
 def spline(xi,fi,S,x):
     #In welchem Intervall liegt x?
     #Fall 1: Linke Grenze
@@ -103,7 +98,7 @@ def spline(xi,fi,S,x):
 
 #Spline-Funktion
 n = 15 #Anzahl der Stützstellen größer 1
-xi = aquid_x(-5,5,n) #Erstellen von N äquidistanten Stützstellen
+xi = np.linspace(-5,5,n) #Erstellen von N äquidistanten Stützstellen
 fi = [] #Stützstellenwerte berechnet
 x = np.linspace(-5,5, 100) #all x values to be evaluated
 for i in xi:
